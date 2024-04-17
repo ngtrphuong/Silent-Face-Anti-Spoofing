@@ -5,7 +5,6 @@
 # @File : functional.py
 # @Software : PyCharm
 
-from __future__ import division
 import torch
 from PIL import Image, ImageOps, ImageEnhance
 try:

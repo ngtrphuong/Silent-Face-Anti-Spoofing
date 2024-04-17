@@ -5,7 +5,6 @@
 # @File : transform.py
 # @Software : PyCharm
 
-from __future__ import division
 import math
 import random
 from PIL import Image
