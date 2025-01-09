@@ -7,8 +7,9 @@
 
 from __future__ import division
 import math
-import random
 from PIL import Image
+import secrets
+
 try:
     import accimage
 except ImportError:
@@ -147,7 +148,7 @@ class RandomHorizontalFlip(object):
         Returns:
             PIL Image: Randomly flipped image.
         """
-        if random.random() < 0.5:
+        if secrets.SystemRandom().random() < 0.5:
             return F.hflip(img)
         return img
 
@@ -191,18 +192,18 @@ class RandomResizedCrop(object):
         """
         for attempt in range(10):
             area = img.size[0] * img.size[1]
-            target_area = random.uniform(*scale) * area
-            aspect_ratio = random.uniform(*ratio)
+            target_area = secrets.SystemRandom().uniform(*scale) * area
+            aspect_ratio = secrets.SystemRandom().uniform(*ratio)
 
             w = int(round(math.sqrt(target_area * aspect_ratio)))
             h = int(round(math.sqrt(target_area / aspect_ratio)))
 
-            if random.random() < 0.5:
+            if secrets.SystemRandom().random() < 0.5:
                 w, h = h, w
 
             if w <= img.size[0] and h <= img.size[1]:
-                i = random.randint(0, img.size[1] - h)
-                j = random.randint(0, img.size[0] - w)
+                i = secrets.SystemRandom().randint(0, img.size[1] - h)
+                j = secrets.SystemRandom().randint(0, img.size[0] - w)
                 return i, j, h, w
 
         # Fallback
